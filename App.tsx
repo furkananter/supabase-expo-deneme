@@ -13,9 +13,9 @@ export default function App() {
   // ];
   return (
     <>
-      <AuthProvider>
+      {/* <AuthProvider>
         <Navigation />
-      </AuthProvider>
+      </AuthProvider> */}
     </>
   );
 }
