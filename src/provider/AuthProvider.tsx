@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import React, { useState, useEffect, createContext } from 'react';
 import { Session } from '@supabase/supabase-js';
+import { supabase } from '../initSupabase';
 
 type ContextProps = {
   user: null | boolean;
@@ -9,12 +10,41 @@ type ContextProps = {
 
 const AuthContext = createContext<Partial<ContextProps>>({});
 
-const AuthProvider = () => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const AuthProvider = (props: Props) => {
+  // user null = loading
+  const [user, setUser] = useState<null | boolean>(null);
+  const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    const session = supabase.auth.session();
+    setSession(session);
+    setUser(session ? true : false);
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        console.log(`Supabase Auth Event: ${event}`);
+        setSession(session);
+        setUser(session ? true : false);
+      }
+    );
+    return () => {
+      authListener?.unsubscribe();
+    };
+  }, [user]);
+
   return (
-    <View>
-      <Text>AuthProvider</Text>
-    </View>
+    <AuthContext.Provider
+      value={{
+        user,
+        session,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
   );
 };
 
-export default AuthProvider;
+export { AuthContext, AuthProvider };

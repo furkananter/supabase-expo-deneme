@@ -4,18 +4,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Loading from '../screens/utils/Loading';
+
+import Auth from './AuthStack';
+import Main from './MainStack';
 
 const Navigation = () => {
-  const Stack = createStackNavigator();
+  const auth = useContext(AuthContext);
+  const user = auth.user;
+
   return (
-    <SafeAreaView
-      style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-    >
-      <View>
-        <Text>URL : {process.env.SUPABASE_URL}</Text>
-        <Text>KEY: {process.env.SUPABASE_KEY}</Text>
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      {user === null && <Loading />}
+      {user === false && <Auth />}
+      {user && <Main />}
+    </NavigationContainer>
   );
 };
 

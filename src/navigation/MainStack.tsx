@@ -1,15 +1,15 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/home';
-import Settings from '../screens/settings';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SecondScreen from '../screens/SecondScreen';
+import { MainStackParamList } from '../types/navigation';
 
-const Tabs = createBottomTabNavigator();
+const MainStack = createNativeStackNavigator<MainStackParamList>();
 const MainTabs = () => {
   return (
-    <Tabs.Navigator>
-      <Tabs.Screen name="Home" component={Home} />
-      <Tabs.Screen name="Settings" component={Settings} />
-    </Tabs.Navigator>
+    <MainStack.Navigator>
+      <MainStack.Screen name="MainTabs" component={MainTabs} />
+      <MainStack.Screen name="SecondScreen" component={SecondScreen} />
+    </MainStack.Navigator>
   );
 };
 
