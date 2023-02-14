@@ -5,24 +5,18 @@ import {
   TouchableOpacity,
   View,
   KeyboardAvoidingView,
-  Image,
-} from 'react-native';
-import { supabase } from '../../initSupabase';
-import { AuthStackParamList } from '../../types/navigation';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import {
-  Layout,
   Text,
   TextInput,
   Button,
-  useTheme,
-  themeColor,
-} from 'react-native-rapi-ui';
+} from 'react-native';
+// import { Button } from '@rne/themed';
+import { supabase } from '../../initSupabase';
+import { AuthStackParamList } from '../../types/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export default function ({
   navigation,
 }: NativeStackScreenProps<AuthStackParamList, 'Register'>) {
-  const { isDarkmode, setTheme } = useTheme();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,7 +38,7 @@ export default function ({
   }
   return (
     <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }}>
-      <Layout>
+      <View>
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -55,7 +49,7 @@ export default function ({
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: isDarkmode ? '#17171E' : themeColor.white100,
+              backgroundColor: '#17171E',
             }}
           >
             {/* <Image
@@ -72,12 +66,10 @@ export default function ({
               flex: 3,
               paddingHorizontal: 20,
               paddingBottom: 20,
-              backgroundColor: isDarkmode ? themeColor.dark : themeColor.white,
+              backgroundColor: '#17171E',
             }}
           >
             <Text
-              fontWeight="bold"
-              size="h3"
               style={{
                 alignSelf: 'center',
                 padding: 30,
@@ -87,11 +79,9 @@ export default function ({
             </Text>
             <Text>Email</Text>
             <TextInput
-              containerStyle={{ marginTop: 15 }}
               placeholder="Enter your email"
               value={email}
               autoCapitalize="none"
-              autoCompleteType="off"
               autoCorrect={false}
               keyboardType="email-address"
               onChangeText={(text) => setEmail(text)}
@@ -99,17 +89,14 @@ export default function ({
 
             <Text style={{ marginTop: 15 }}>Password</Text>
             <TextInput
-              containerStyle={{ marginTop: 15 }}
               placeholder="Enter your password"
               value={password}
               autoCapitalize="none"
-              autoCompleteType="off"
               autoCorrect={false}
               secureTextEntry={true}
               onChangeText={(text) => setPassword(text)}
             />
             <Button
-              text={loading ? 'Loading' : 'Create an account'}
               onPress={() => {
                 register();
               }}
@@ -117,7 +104,9 @@ export default function ({
                 marginTop: 20,
               }}
               disabled={loading}
-            />
+            >
+              {loading ? 'Loading...' : 'Register'}
+            </Button>
 
             <View
               style={{
@@ -170,7 +159,7 @@ export default function ({
             </View>
           </View>
         </ScrollView>
-      </Layout>
+      </View>
     </KeyboardAvoidingView>
   );
 }

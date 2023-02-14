@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { ThemeProvider } from "react-native-rapi-ui";
-import Navigation from "./src/navigation";
-import { AuthProvider } from "./src/provider/AuthProvider";
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+
+import { Text } from 'react-native';
+import Navigation from './src/navigation';
+import { AuthProvider } from './src/provider/AuthProvider';
 
 export default function App() {
   // const images = [
@@ -11,11 +12,10 @@ export default function App() {
   //   require("./assets/images/forget.png"),
   // ];
   return (
-    <ThemeProvider>
+    <>
       <AuthProvider>
         <Navigation />
       </AuthProvider>
-      <StatusBar />
-    </ThemeProvider>
+    </>
   );
 }
