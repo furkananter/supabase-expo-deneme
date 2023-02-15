@@ -11,7 +11,7 @@ const Loading = () => {
           alignItems: 'center',
         }}
       >
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#00FF00" />
       </View>
     </>
   );

@@ -3,12 +3,14 @@ import Login from '../screens/auth/Login';
 import Register from '../screens/auth/Register';
 import ForgetPassword from '../screens/auth/ForgetPassword';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../types/navigation';
 
-const AuthStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 
 const Auth = () => {
   return (
     <AuthStack.Navigator
+      initialRouteName="Login"
       screenOptions={{
         headerShown: false,
       }}

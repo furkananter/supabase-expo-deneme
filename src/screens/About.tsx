@@ -1,14 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { MainStackParamList } from '../types/navigation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Layout, Text } from 'react-native-rapi-ui';
 
-export default function ({
+export default ({
   navigation,
-}: NativeStackScreenProps<MainStackParamList, 'MainTabs'>) {
+}: NativeStackScreenProps<MainStackParamList, 'MainTabs'>) => {
   return (
-    <Layout>
+    <>
       <View
         style={{
           flex: 1,
@@ -17,7 +16,11 @@ export default function ({
         }}
       >
         <Text>This is the About tab</Text>
+        <Button
+          title="Go to Home"
+          onPress={() => navigation.navigate('Home')}
+        />
       </View>
-    </Layout>
+    </>
   );
-}
+};

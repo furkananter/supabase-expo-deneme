@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, useTheme, themeColor } from 'react-native-rapi-ui';
+import { Text } from 'react-native';
+import { useThemeMode } from '@rneui/themed';
 
 const TabBarText = ({
   focused,
@@ -8,16 +9,15 @@ const TabBarText = ({
   focused: boolean;
   title: string;
 }) => {
-  const { isDarkmode } = useTheme();
+  const { mode } = useThemeMode();
   return (
     <Text
-      fontWeight="bold"
       style={{
         marginBottom: 5,
         color: focused
-          ? isDarkmode
-            ? themeColor.white100
-            : themeColor.primary
+          ? mode === 'dark'
+            ? '#fff'
+            : '#000'
           : 'rgb(143, 155, 179)',
         fontSize: 12,
       }}

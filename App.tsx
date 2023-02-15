@@ -13,9 +13,15 @@ export default function App() {
   // ];
   return (
     <>
+<<<<<<< Updated upstream
       {/* <AuthProvider>
         <Navigation />
       </AuthProvider> */}
+=======
+      {/* <AuthProvider> */}
+        <Navigation />
+      {/* </AuthProvider> */}
+>>>>>>> Stashed changes
     </>
   );
 }

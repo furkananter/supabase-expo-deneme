@@ -1,14 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { MainStackParamList } from '../types/navigation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Layout, Text } from 'react-native-rapi-ui';
 
-export default function ({
+const Profile = ({
   navigation,
-}: NativeStackScreenProps<MainStackParamList, 'MainTabs'>) {
+}: NativeStackScreenProps<MainStackParamList, 'MainTabs'>) => {
   return (
-    <Layout>
+    <>
       <View
         style={{
           flex: 1,
@@ -18,6 +17,8 @@ export default function ({
       >
         <Text>This is the Profile tab</Text>
       </View>
-    </Layout>
+    </>
   );
-}
+};
+
+export default Profile;
