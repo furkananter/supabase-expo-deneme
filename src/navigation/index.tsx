@@ -4,6 +4,7 @@ import Loading from '../screens/utils/Loading';
 
 import Auth from './AuthStack';
 import Main from './MainStack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Navigation = () => {
   // const auth = useContext(AuthContext);

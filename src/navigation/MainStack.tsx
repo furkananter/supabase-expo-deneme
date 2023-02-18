@@ -4,14 +4,14 @@ import SecondScreen from '../screens/SecondScreen';
 import { MainStackParamList } from '../types/navigation';
 import MainTabs from './MainTabs';
 
-const Main = createNativeStackNavigator<MainStackParamList>();
-const MainStack = () => {
+const MainStack = createNativeStackNavigator<MainStackParamList>();
+const Main = () => {
   return (
-    <Main.Navigator>
-      <Main.Screen name="MainTabs" component={MainTabs} />
-      <Main.Screen name="SecondScreen" component={SecondScreen} />
-    </Main.Navigator>
+    <MainStack.Navigator>
+      <MainStack.Screen name="MainTabs" component={MainTabs} />
+      <MainStack.Screen name="SecondScreen" component={SecondScreen} />
+    </MainStack.Navigator>
   );
 };
 
-export default MainStack;
+export default Main;

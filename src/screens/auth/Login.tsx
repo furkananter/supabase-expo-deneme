@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Alert, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert, Text } from 'react-native';
 import { supabase } from '../../initSupabase';
-import { AuthStackParamList } from '../../types/navigation';
+import { AuthStackParamList, MainStackParamList } from '../../types/navigation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Input } from '@rneui/themed';
+import MyBottomSheet from '../../components/MyBottomSheet';
+import BottomSheetComponent from '../../components/MyBottomSheet';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,6 +15,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   verticallySpaced: {
+    flex: 1,
     paddingTop: 4,
     paddingBottom: 4,
     alignSelf: 'stretch',
@@ -28,31 +31,54 @@ const Login = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<Boolean>(false);
 
   async function signInWithEmail() {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
 
-    if (error) Alert.alert(error.message);
-    setLoading(false);
+    if (error) {
+      setLoading(false);
+      Alert.alert(error.message);
+    } else {
+      console.log('success:', data.user, data.session);
+    }
   }
 
-  async function signUpWithEmail() {
+  async function register() {
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
     });
-
-    if (error) Alert.alert(error.message);
-    setLoading(false);
+    if (!error && !data) {
+      setLoading(false);
+      console.log(data);
+      Alert.alert('Check your email for the login link!');
+    } else {
+      console.log(data);
+    }
+    if (error) {
+      setLoading(false);
+      Alert.alert(error.message);
+    }
   }
+  // async function signUpWithEmail() {
+  //   setLoading(true);
+  //   const { error } = await supabase.auth.signUp({
+  //     email: email,
+  //     password: password,
+  //   });
+
+  //   if (error) Alert.alert(error.message);
+  //   setLoading(false);
+  // }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input
           label="Email"
@@ -81,12 +107,22 @@ const Login = ({
           onPress={() => signInWithEmail()}
         />
       </View>
-      <View style={styles.verticallySpaced}>
-        <Button
-          title="Sign up"
-          disabled={loading}
-          onPress={() => signUpWithEmail()}
-        />
+      {/* <View style={styles.verticallySpaced}>
+        <Button title="Sign up" disabled={loading} onPress={() => register()} />
+      </View> */}
+      <View style={[styles.verticallySpaced, styles.mt20]}>
+        <Text style={{ textAlign: 'center' }}>
+          Don't have an account?{' '}
+          <Text
+            style={{ color: 'blue' }}
+            onPress={() => navigation.navigate('Register')}
+          >
+            Sign up
+          </Text>
+        </Text>
+      </View>
+      <View style={[styles.verticallySpaced, styles.mt20]}>
+        <BottomSheetComponent />
       </View>
     </SafeAreaView>
   );

@@ -19,7 +19,7 @@ const AuthProvider = (props: Props) => {
   const [user, setUser] = useState<null | boolean>(null);
   const [session, setSession] = useState<Session | null>(null);
   //  useEffect(() => {
-  //     const session = supabase.auth.session();
+  //     const session = supabase.auth.session;
   //     setSession(session);
   //     setUser(session ? true : false);
   //     const { data: authListener } = supabase.auth.onAuthStateChange(

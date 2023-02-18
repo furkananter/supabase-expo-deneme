@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 
 import { Text } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import MyBottomSheet from './src/components/MyBottomSheet';
 import Navigation from './src/navigation';
 import { AuthProvider } from './src/provider/AuthProvider';
 
@@ -13,15 +15,11 @@ export default function App() {
   // ];
   return (
     <>
-<<<<<<< Updated upstream
-      {/* <AuthProvider>
-        <Navigation />
-      </AuthProvider> */}
-=======
       {/* <AuthProvider> */}
-        <Navigation />
+      {/* <MyBottomSheet /> */}
+      <Navigation />
+
       {/* </AuthProvider> */}
->>>>>>> Stashed changes
     </>
   );
 }

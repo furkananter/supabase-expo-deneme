@@ -39,6 +39,7 @@ const Register = ({
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Register</Text>
+      <Button title="Login" onPress={() => navigation.navigate('Login')} />
       <Button
         title="ForgetPassword"
         onPress={() => navigation.navigate('ForgetPassword')}
