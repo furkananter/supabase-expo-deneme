@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   verticallySpaced: {
-    flex: 1,
+
     paddingTop: 4,
     paddingBottom: 4,
     alignSelf: 'stretch',
@@ -78,7 +78,7 @@ const Login = ({
   // }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor:'black' }}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input
           label="Email"
@@ -121,9 +121,9 @@ const Login = ({
           </Text>
         </Text>
       </View>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
+      {/* <View style={[styles.verticallySpaced, styles.mt20]}>
         <BottomSheetComponent />
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

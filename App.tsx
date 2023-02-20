@@ -16,9 +16,7 @@ export default function App() {
   return (
     <>
       {/* <AuthProvider> */}
-      {/* <MyBottomSheet /> */}
       <Navigation />
-
       {/* </AuthProvider> */}
     </>
   );
